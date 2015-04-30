@@ -14,21 +14,28 @@ import android.widget.ListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qianfeng.chanyouji.R;
-import com.qianfeng.chanyouji.finalutils.FinalUrl;
+import com.qianfeng.chanyouji.beans.DestinationsDatas;
+import com.qianfeng.chanyouji.netutils.PaseJson;
+import com.qianfeng.chanyouji.urls.FinalUrl;
 import com.qianfeng.chanyouji.netutils.DownLoadData;
+
+import java.util.List;
 
 /**
  * Created by admin on 2015/4/30.
  */
 public class DestinationFragment extends Fragment implements PullToRefreshBase.OnRefreshListener<ListView> {
     private PullToRefreshListView pullToRefalsh;
+    private List<DestinationsDatas> destinationsDatases;
     private Handler handler=new Handler(){
+
+
         @Override
         public void handleMessage(Message msg) {
             if (msg.what==1) {
                 String s = (String) msg.obj;
                 //解析数据
-
+                destinationsDatases = PaseJson.jsonToList(s);
 
 
             }
@@ -43,7 +50,7 @@ public class DestinationFragment extends Fragment implements PullToRefreshBase.O
         DownLoadData.downData(getActivity(), FinalUrl.DESTINATION,handler,1);
         //下拉监听
         pullToRefalsh.setOnRefreshListener(this);
-
+       // pullToRefalsh.setAdapter();
 
         return view;
     }

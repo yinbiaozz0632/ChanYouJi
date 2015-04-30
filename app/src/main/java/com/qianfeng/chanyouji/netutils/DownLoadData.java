@@ -30,7 +30,6 @@ public class DownLoadData {
             @Override
             public void onFailure(HttpException e, String s) {
                 Toast.makeText(context,"错误"+s,Toast.LENGTH_SHORT).show();
-                System.out.println("================"+s);
             }
         });
     }
