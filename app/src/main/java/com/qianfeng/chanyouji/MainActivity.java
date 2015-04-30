@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import com.qianfeng.chanyouji.fragment.DestinationFragment;
 import com.qianfeng.chanyouji.fragment.SubjectFragment;
 import com.qianfeng.chanyouji.fragment.TravelNotesFragment;
+import com.qianfeng.chanyouji.netutils.BitmapHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
      * 初始化fragment集合
      */
     private void init(){
+        BitmapHelper.initBitmapUtils(this);
         fragments = new ArrayList<Fragment>();//初始化fragment
         fragments.add(new TravelNotesFragment());
         fragments.add(new SubjectFragment());
