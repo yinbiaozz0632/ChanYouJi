@@ -39,6 +39,7 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
      * 初始化fragment集合
      */
     private void init(){
+
         BitmapHelper.initBitmapUtils(this);//初始化BitMapUtils
         fragments = new ArrayList<Fragment>();//初始化fragment
         fragments.add(new TravelNotesFragment());
