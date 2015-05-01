@@ -1,5 +1,7 @@
 package com.qianfeng.chanyouji.netutils;
 
+import android.util.Log;
+
 import com.qianfeng.chanyouji.beans.Destination;
 import com.qianfeng.chanyouji.beans.DestinationsDatas;
 
@@ -14,16 +16,15 @@ import java.util.List;
  * Created by aaa on 15-4-30.
  */
 public class PaseJson {
-
-    public static List<DestinationsDatas> jsonToList(String json){
+    public static List<DestinationsDatas> jsonToList(String json) {
         try {
             JSONArray array = new JSONArray(json);
-            List<DestinationsDatas> list=new ArrayList<>();
-            for (int i = 0; i <array.length(); i++) {
+            List<DestinationsDatas> list = new ArrayList<>();
+            for (int i = 0; i < array.length(); i++) {
                 DestinationsDatas destinationsDatas = new DestinationsDatas();
                 JSONObject jsonObject = array.getJSONObject(i);
                 JSONArray destinations = jsonObject.getJSONArray("destinations");
-                List<Destination> list1=new ArrayList<>();
+                List<Destination> list1 = new ArrayList<>();
                 for (int j = 0; j < destinations.length(); j++) {
                     Destination destination = new Destination();
                     JSONObject jsonObject1 = destinations.getJSONObject(j);
@@ -35,9 +36,8 @@ public class PaseJson {
                 }
                 destinationsDatas.setDestinations(list1);
                 list.add(destinationsDatas);
-                return list;
             }
-            System.out.println(list.toString());
+            return list;
 
 
         } catch (JSONException e) {
