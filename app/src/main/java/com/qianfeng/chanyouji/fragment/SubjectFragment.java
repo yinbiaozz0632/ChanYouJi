@@ -100,7 +100,7 @@ public class SubjectFragment extends Fragment implements PullToRefreshBase.OnRef
                         e.printStackTrace();
                     }
                 }
-                Log.d("bb",listDatas.toString());
+//                Log.d("bb",listDatas.toString());
                 adapter.notifyDataSetChanged();
                 sub_pb.setVisibility(View.GONE);
                 listView.onRefreshComplete();
@@ -128,6 +128,10 @@ public class SubjectFragment extends Fragment implements PullToRefreshBase.OnRef
         }
     }
 
+    /**
+     * 上拉和下拉的监听事件
+     * @param refreshView
+     */
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         page=1;
