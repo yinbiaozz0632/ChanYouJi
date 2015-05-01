@@ -6,11 +6,9 @@ import android.support.v4.app.Fragment;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -61,12 +59,10 @@ public class TravelNotesFragment extends Fragment {
         View view_vp=inflater.inflate(R.layout.viewpager_travelnotes,null);
         queue=Volley.newRequestQueue(getActivity());
 
-
-
         tnInfos=new ArrayList<TravelNotesInfo>();
 
-
         PTRlistView= (PullToRefreshListView) view.findViewById(R.id.lv_refresh);
+        PTRlistView.setMode(PullToRefreshBase.Mode.BOTH);
         PTRlistView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -82,15 +78,12 @@ public class TravelNotesFragment extends Fragment {
                 getListViewData();
             }
         });
-
          viewPager = (ViewPager) view_vp.findViewById(R.id.vp_travelnotes);
         pb= (ProgressBar) view.findViewById(R.id.pb_travelnotes);
 
         PTRlistView.setMode(PullToRefreshBase.Mode.BOTH);
         listView=PTRlistView.getRefreshableView();
         listView.addHeaderView(view_vp);
-
-
 
         getList();
         getListViewData();
@@ -192,13 +185,14 @@ public class TravelNotesFragment extends Fragment {
                     }
                 }
                 adapter.notifyDataSetChanged();
-                pb.setVisibility(View.GONE);
                 PTRlistView.onRefreshComplete();
+                pb.setVisibility(View.GONE);
             }
         },new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(getActivity(),"数据请求失败",Toast.LENGTH_SHORT).show();
+                PTRlistView.onRefreshComplete();
                 pb.setVisibility(View.GONE);
             }
         });
