@@ -55,5 +55,10 @@
             android:src="@drawable/share_a_normal" />
     </LinearLayout>
 
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pulltolistview"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
 
 </RelativeLayout>

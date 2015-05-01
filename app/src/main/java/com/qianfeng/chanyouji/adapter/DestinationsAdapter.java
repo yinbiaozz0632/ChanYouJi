@@ -2,6 +2,7 @@ package com.qianfeng.chanyouji.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.LoginFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +24,10 @@ import java.util.List;
 /**
  * Created by aaa on 15-4-30.
  */
-public class DestinationsAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+public class DestinationsAdapter extends BaseAdapter  {
     private Context context;
     private List<DestinationsDatas> list;
-    private List<Destination> destinations;
+
 
     public DestinationsAdapter(Context context, List<DestinationsDatas> list) {
         this.context = context;
@@ -53,7 +54,7 @@ public class DestinationsAdapter extends BaseAdapter implements AdapterView.OnIt
         convertView= LayoutInflater.from(context).inflate(R.layout.item_destinations, null);
         MyGridView gridView= (MyGridView) convertView.findViewById(R.id.item_destinations_gv);
         DestinationsDatas destinationsDatas = list.get(position);
-        destinations = destinationsDatas.getDestinations();
+        List<Destination> destinations = destinationsDatas.getDestinations();
         TextView text_Contry= (TextView) convertView.findViewById(R.id.item_destinations);
         if (position==0) {
             text_Contry.setText("国外·亚洲");
@@ -67,19 +68,9 @@ public class DestinationsAdapter extends BaseAdapter implements AdapterView.OnIt
             text_Contry.setText("国内,大陆");
         }
         gridView.setAdapter(new DestinationsGridViewAdapter(context,destinations));
-        gridView.setOnItemClickListener(this);
 
         return convertView;
     }
 
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Destination destination = destinations.get(position);
-        String name_zh_cn = destination.getName_Zh_Cn();
-        Intent intent = new Intent(context, CanTrayPackageBookActivity.class);
-        intent.putExtra("name_Zh_cn",name_zh_cn);
-        context.startActivity(intent);
-
-    }
 }

@@ -1,11 +1,12 @@
 package com.qianfeng.chanyouji.beans;
 
-/**
- * Created by aaa on 15-4-30.
- */
-public class Destination {
+import java.util.List;
 
-    private String id;
+/**
+ * Created by aaa on 15-5-1.
+ */
+public class Entry_Destination {
+    private String id,name_Zh_Cn,name_En,image_Url;
 
     public String getId() {
         return id;
@@ -13,16 +14,6 @@ public class Destination {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    private String image_Url,name_Zh_Cn,name_En,poi_Count;
-
-    public String getImage_Url() {
-        return image_Url;
-    }
-
-    public void setImage_Url(String image_Url) {
-        this.image_Url = image_Url;
     }
 
     public String getName_Zh_Cn() {
@@ -41,22 +32,22 @@ public class Destination {
         this.name_En = name_En;
     }
 
-    public String getPoi_Count() {
-        return poi_Count;
+    public String getImage_Url() {
+        return image_Url;
     }
 
-    public void setPoi_Count(String poi_Count) {
-        this.poi_Count = poi_Count+"旅行地";
+    public void setImage_Url(String image_Url) {
+        this.image_Url = image_Url;
     }
+
 
     @Override
     public String toString() {
-        return "Destination{" +
+        return "Entry_Destination{" +
                 "id='" + id + '\'' +
-                ", image_Url='" + image_Url + '\'' +
                 ", name_Zh_Cn='" + name_Zh_Cn + '\'' +
                 ", name_En='" + name_En + '\'' +
-                ", poi_Count='" + poi_Count + '\'' +
+                ", image_Url='" + image_Url + '\'' +
                 '}';
     }
 }
