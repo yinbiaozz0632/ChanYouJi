@@ -1,8 +1,11 @@
 package com.qianfeng.chanyouji.netutils;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.lidroid.xutils.HttpUtils;
@@ -16,9 +19,10 @@ import com.lidroid.xutils.http.client.HttpRequest;
  */
 public class DownLoadData {
 
-    public static void downData(final Context context,String url, final Handler handler, final int what){
+    public static void downData(final Context context, String url, final Handler handler, final int what){
         HttpUtils httpUtils=new HttpUtils();
         httpUtils.send(HttpRequest.HttpMethod.GET,url,new RequestCallBack<String>() {
+
             @Override
             public void onSuccess(ResponseInfo<String> objectResponseInfo) {
                 Message message = handler.obtainMessage();
@@ -27,10 +31,13 @@ public class DownLoadData {
                 handler.sendMessage(message);
             }
 
+
+
+
+
             @Override
             public void onFailure(HttpException e, String s) {
                 Toast.makeText(context,"错误"+s,Toast.LENGTH_SHORT).show();
-                System.out.println("================"+s);
             }
         });
     }

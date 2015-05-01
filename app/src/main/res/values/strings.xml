@@ -4,5 +4,6 @@
     <string name="app_name">蝉游记</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_can_tray_package_book">CanTrayPackageBookActivity</string>
 
 </resources>
