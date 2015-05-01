@@ -6,6 +6,6 @@ package com.qianfeng.chanyouji.urls;
 public class TravelNotesUrls {
 
     public static String header_url="http://chanyouji.com/api/adverts.json?name=app_featured_banner_android&channel=wandoujiapromo";
-    public static String TravelNotes_url="http://chanyouji.com/api/trips/featured.json?page=1";
+    public static String TravelNotes_url="http://chanyouji.com/api/trips/featured.json?page=";
 
 }

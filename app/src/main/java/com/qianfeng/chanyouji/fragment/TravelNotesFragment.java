@@ -53,6 +53,7 @@ public class TravelNotesFragment extends Fragment {
 
     private List<TravelNotesInfo> tnInfos;
     private PullToRefreshListView PTRlistView;
+    private int page=1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,12 +67,30 @@ public class TravelNotesFragment extends Fragment {
 
 
         PTRlistView= (PullToRefreshListView) view.findViewById(R.id.lv_refresh);
+        PTRlistView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                page=1;
+                tnInfos.clear();
+                adapter.notifyDataSetChanged();
+                getListViewData();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                page++;
+                getListViewData();
+            }
+        });
+
          viewPager = (ViewPager) view_vp.findViewById(R.id.vp_travelnotes);
         pb= (ProgressBar) view.findViewById(R.id.pb_travelnotes);
 
         PTRlistView.setMode(PullToRefreshBase.Mode.BOTH);
         listView=PTRlistView.getRefreshableView();
         listView.addHeaderView(view_vp);
+
+
 
         getList();
         getListViewData();
@@ -146,7 +165,7 @@ public class TravelNotesFragment extends Fragment {
     //下载listView数据
 
     private void getListViewData(){
-        JsonArrayRequest request1 = new JsonArrayRequest(TravelNotesUrls.TravelNotes_url,new Response.Listener<JSONArray>() {
+        JsonArrayRequest request1 = new JsonArrayRequest(TravelNotesUrls.TravelNotes_url+page,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
 
@@ -174,6 +193,7 @@ public class TravelNotesFragment extends Fragment {
                 }
                 adapter.notifyDataSetChanged();
                 pb.setVisibility(View.GONE);
+                PTRlistView.onRefreshComplete();
             }
         },new Response.ErrorListener() {
             @Override
