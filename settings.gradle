@@ -1,2 +1,2 @@
-include ':app'
+include ':app', 'PinnedSectionlistview', 'library'
 include ':PullToRefresh'

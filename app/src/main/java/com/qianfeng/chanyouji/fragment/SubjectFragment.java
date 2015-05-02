@@ -1,5 +1,6 @@
 package com.qianfeng.chanyouji.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qianfeng.chanyouji.R;
+import com.qianfeng.chanyouji.SubjectDetails;
 import com.qianfeng.chanyouji.adapter.SubjectShouYeAdapter;
 import com.qianfeng.chanyouji.beans.Subject_ShouYeData;
 import com.qianfeng.chanyouji.urls.Urls;
@@ -37,7 +40,7 @@ import java.util.List;
  *
  * Created by 程朋飞 on 2015/4/30.
  */
-public class SubjectFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView>{
+public class SubjectFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView>,AdapterView.OnItemClickListener {
 
     private ProgressBar sub_pb;
     private View view;
@@ -71,7 +74,7 @@ public class SubjectFragment extends Fragment implements PullToRefreshBase.OnRef
         listView = ((PullToRefreshListView) view.findViewById(R.id.subject_ptfListView));
         listView.setMode(PullToRefreshBase.Mode.BOTH);
         listView.setOnRefreshListener(this);
-
+        listView.setOnItemClickListener(this);
         listDatas=new ArrayList<>();
     }
 
@@ -144,5 +147,12 @@ public class SubjectFragment extends Fragment implements PullToRefreshBase.OnRef
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
         page++;
         downLoadJsonString();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        Intent intent = new Intent(getActivity(),SubjectDetails.class);
+
+        startActivity(intent);
     }
 }

@@ -5,6 +5,59 @@
     android:orientation="vertical"
     tools:context=".ActionBarActivity">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#49BCFF" >
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:text="蝉游记" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/ivComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_header_search" />
+
+            <ImageView
+                android:id="@+id/ivFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="8dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/profile_a_normal" />
+
+            <ImageView
+                android:id="@+id/ivShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_train_more" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
     <RadioGroup
         android:id="@+id/main_RadioGroup"
         android:layout_width="match_parent"

@@ -3,29 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/search"
-        android:title="@string/action_settings"
-        android:icon="@drawable/icon_header_search"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom|withText" />
-
-    <item
-        android:id="@+id/login"
-        android:title="@string/action_settings"
-        android:icon="@drawable/profile_a_normal"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom|withText" />
-
-
-    <item
-        android:id="@+id/more"
-        android:title="@string/action_settings"
-        android:icon="@drawable/icon_train_more"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom|withText" />
-
-
-    <item
         android:id="@+id/more3"
         android:title="离线浏览"
         android:orderInCategory="100"

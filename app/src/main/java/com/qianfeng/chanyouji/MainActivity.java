@@ -131,9 +131,7 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.search) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
