@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.qianfeng.chanyouji.adapter.CantrayPackageBookAdapter;
 import com.qianfeng.chanyouji.beans.Entry_Destination;
 import com.qianfeng.chanyouji.netutils.DownLoadData;
 import com.qianfeng.chanyouji.netutils.PaseJson;
@@ -33,11 +34,13 @@ public class CanTrayPackageBookActivity extends ActionBarActivity implements Vie
     private Handler handler =new Handler(){
         @Override
         public void handleMessage(Message msg) {
+            listView.onRefreshComplete();
             String s = (String) msg.obj;
-
             //解析
             List<Entry_Destination> entry_destinations = PaseJson.jsonToList2(s);
-            Log.d("llllll",entry_destinations+"");
+            //设置适配器
+            listView.setAdapter(new CantrayPackageBookAdapter(CanTrayPackageBookActivity.this,entry_destinations));
+
         }
     };
 
@@ -72,6 +75,6 @@ public class CanTrayPackageBookActivity extends ActionBarActivity implements Vie
 
     @Override
     public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-
+        DownLoadData.downData(this, FinalUrl.ENTER_DESTINATION+id+".json",handler,1);
     }
 }
