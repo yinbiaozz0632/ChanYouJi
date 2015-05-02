@@ -9,8 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -37,10 +35,11 @@ public class DestinationFragment extends Fragment implements PullToRefreshBase.O
         @Override
         public void handleMessage(Message msg) {
             if (msg.what==1) {
+                pro_bar.setVisibility(View.GONE);
                 String s = (String) msg.obj;
+
                 //解析数据
-               // destinationsDatases = PaseJson.jsonToList(s);
-               // destinationsDatases = PaseJson.jsonToList(s);
+                pullToRefalsh.onRefreshComplete();
                 destinationsDatases = PaseJson.jsonToList(s);
                 adapter = new DestinationsAdapter(getActivity(),destinationsDatases);
                 pullToRefalsh.setAdapter(adapter);
@@ -48,10 +47,12 @@ public class DestinationFragment extends Fragment implements PullToRefreshBase.O
             }
         }
     };
+    private ProgressBar pro_bar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.destination, container, false);
+        pro_bar = ((ProgressBar) view.findViewById(R.id.pro));
 
         pullToRefalsh = ((PullToRefreshListView) view.findViewById(R.id.pulltolistview));
         DownLoadData.downData(getActivity(), FinalUrl.DESTINATION,handler,1);
@@ -66,7 +67,7 @@ public class DestinationFragment extends Fragment implements PullToRefreshBase.O
     public void onRefresh(PullToRefreshBase<ListView> refreshView) {
         DownLoadData.downData(getActivity(), FinalUrl.DESTINATION,handler,1);
 
-        pullToRefalsh.onRefreshComplete();
+
     }
 
 }

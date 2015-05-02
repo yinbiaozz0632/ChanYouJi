@@ -10,5 +10,11 @@
         android:id="@+id/pulltolistview">
         </com.handmark.pulltorefresh.library.PullToRefreshListView>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/pro"/>
+
 
 </RelativeLayout>
