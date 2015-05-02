@@ -1,5 +1,7 @@
 package com.qianfeng.chanyouji;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.qianfeng.chanyouji.fragment.DestinationFragment;
 import com.qianfeng.chanyouji.fragment.SubjectFragment;
@@ -21,12 +24,19 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener {
-
+    private static boolean isExit=false;
     private List<Fragment> fragments;
     private ViewPager viewPager;
     private RadioGroup rg;
     private MainViewPagerAdapter adapter;
-
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what==1) {
+                isExit=false;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +48,7 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
     /**
      * 初始化fragment集合
      */
-    private void init(){
+    private void init() {
 
         BitmapHelper.initBitmapUtils(this);//初始化BitMapUtils
         fragments = new ArrayList<Fragment>();//初始化fragment
@@ -69,13 +79,14 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-        ((RadioButton)rg.getChildAt(position)).setChecked(true);//滑动时rb的背景图随之改变
+        ((RadioButton) rg.getChildAt(position)).setChecked(true);//滑动时rb的背景图随之改变
     }
 
     @Override
     public void onPageScrollStateChanged(int i) {
 
     }
+
     //点击radioButton之后ViewPager跟着滑动
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
@@ -90,7 +101,7 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
     /**
      * fragment的适配器
      */
-    class MainViewPagerAdapter extends FragmentPagerAdapter{
+    class MainViewPagerAdapter extends FragmentPagerAdapter {
 
 
         public MainViewPagerAdapter(FragmentManager fm) {
@@ -107,13 +118,6 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
             return fragments.size();
         }
     }
-
-
-
-
-
-
-
 
 
     @Override
@@ -134,5 +138,23 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        exit();
+
+    }
+
+    private void exit() {
+        if (!isExit) {
+            Toast.makeText(MainActivity.this,"再按一次退出应用程序",Toast.LENGTH_SHORT).show();
+            isExit=true;
+            handler.sendEmptyMessageDelayed(1,2000);
+        }else{
+            finish();
+            System.exit(0);
+        }
     }
 }

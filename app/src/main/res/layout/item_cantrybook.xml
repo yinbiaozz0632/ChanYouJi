@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="5dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher"
+        android:scaleType="fitXY"
+        android:id="@+id/cantr_image" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cantry_rg"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_below="@+id/cantr_image"
+        android:orientation="horizontal">
+
+        <RadioButton
+            style="@style/cantry_rg"
+            android:id="@+id/cantry_rb1"
+            android:drawableTop="@drawable/special_selector"
+            android:drawablePadding="5dp"
+            android:textColor="@color/special_text1_color"
+            android:text="专题"></RadioButton>
+
+        <RadioButton
+            style="@style/cantry_rg"
+            android:id="@+id/cantry_rb2"
+            android:drawableTop="@drawable/trip1_selector"
+            android:drawablePadding="5dp"
+            android:textColor="@color/special_text1_color"
+            android:text="行程"></RadioButton>
+
+        <RadioButton
+            style="@style/cantry_rg"
+            android:id="@+id/cantry_rb3"
+            android:drawableTop="@drawable/travel_selector"
+            android:drawablePadding="5dp"
+            android:textColor="@color/special_text1_color"
+            android:text="旅行地"></RadioButton>
+
+        <RadioButton
+            style="@style/cantry_rg"
+            android:id="@+id/cantry_rb4"
+            android:textColor="@color/special_text1_color"
+            android:drawableTop="@drawable/travel_myprofile_selector"
+            android:drawablePadding="5dp"
+            android:text="游记"></RadioButton>
+    </RadioGroup>
+
+
+</RelativeLayout>

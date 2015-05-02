@@ -1,6 +1,7 @@
 package com.qianfeng.chanyouji.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.BitmapUtils;
+import com.qianfeng.chanyouji.CanTrayPackageBookActivity;
 import com.qianfeng.chanyouji.R;
 import com.qianfeng.chanyouji.beans.Destination;
 import com.qianfeng.chanyouji.netutils.BitmapHelper;
@@ -22,7 +24,6 @@ import java.util.List;
 public class DestinationsGridViewAdapter extends BaseAdapter {
     private Context context;
     private List<Destination> list;
-
     public DestinationsGridViewAdapter(Context context, List<Destination> list) {
         this.context = context;
         this.list = list;
@@ -46,7 +47,7 @@ public class DestinationsGridViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Destination destination = list.get(position);
+        final Destination destination = list.get(position);
         convertView= LayoutInflater.from(context).inflate(R.layout.item_gridview, null);
 
         ImageView destinations_iv= (ImageView) convertView.findViewById(R.id.item_destinations_iv);
@@ -61,6 +62,18 @@ public class DestinationsGridViewAdapter extends BaseAdapter {
 
         TextView destinations_tv_tra= (TextView) convertView.findViewById(R.id.item_destinations_tv_tra);
         destinations_tv_tra.setText(destination.getPoi_Count());
+
+        destinations_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name_zh_cn = destination.getName_Zh_Cn();
+                Intent intent = new Intent(context, CanTrayPackageBookActivity.class);
+                intent.putExtra("id",destination.getId());
+                intent.putExtra("name_Zh_cn",name_zh_cn);
+
+                context.startActivity(intent);
+            }
+        });
 
 
         return convertView;
