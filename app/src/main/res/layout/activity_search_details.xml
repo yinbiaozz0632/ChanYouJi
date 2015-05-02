@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#49BCFF" >
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="click"
+            android:background="@drawable/arrow_right_normal"/>
+
+
+        <TextView
+            android:id="@+id/searchDTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@+id/img"
+            android:layout_marginLeft="10dp"
+            android:textSize="24sp"/>
+
+    </RelativeLayout>
+
+
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/search_listView"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="match_parent">
+
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+    <ProgressBar
+        android:id="@+id/search_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+</LinearLayout>

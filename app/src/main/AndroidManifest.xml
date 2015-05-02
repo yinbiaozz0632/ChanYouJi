@@ -37,6 +37,10 @@
             android:name=".SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
+        <activity
+            android:name=".SearchDetailsActivity"
+            android:label="@string/title_activity_search_details" >
+        </activity>
     </application>
 
 </manifest>

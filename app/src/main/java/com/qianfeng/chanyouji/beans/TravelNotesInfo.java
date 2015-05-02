@@ -4,13 +4,13 @@ package com.qianfeng.chanyouji.beans;
  * Created by aaa on 15-5-1.
  */
 public class TravelNotesInfo {
-        private String front_cover_photo_url;
-        private String name;
-        private String start_date;
-        private int days;
-        private int photos_count;
-        private Boolean featured;
-        private String image;
+    private String front_cover_photo_url;
+    private String name;
+    private String start_date;
+    private int days;
+    private int photos_count;
+    private Boolean featured;
+    private String image;
 
     public TravelNotesInfo(String front_cover_photo_url, String name, String start_date, int days, int photos_count, Boolean featured, String image) {
         this.front_cover_photo_url = front_cover_photo_url;

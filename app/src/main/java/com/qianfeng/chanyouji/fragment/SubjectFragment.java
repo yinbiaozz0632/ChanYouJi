@@ -152,7 +152,7 @@ public class SubjectFragment extends Fragment implements PullToRefreshBase.OnRef
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Intent intent = new Intent(getActivity(),SubjectDetails.class);
-
+        intent.putExtra("id",listDatas.get(position-1).getId()+"");
         startActivity(intent);
     }
 }

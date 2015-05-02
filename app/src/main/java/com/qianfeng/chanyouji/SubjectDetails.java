@@ -1,5 +1,6 @@
 package com.qianfeng.chanyouji;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,11 +50,16 @@ public class SubjectDetails extends ActionBarActivity {
     private ListView sub_listView;
     private List<SubjectDetalisData> datas;
     private SubjectdetalilsAdapter adapter;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject_details);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+
         init();
         getData();
 
@@ -89,7 +95,7 @@ public class SubjectDetails extends ActionBarActivity {
         HttpUtils utils=new HttpUtils();
 
 
-        utils.send(HttpRequest.HttpMethod.GET, Urls.Subject_XiangQing,new RequestCallBack<String>() {
+        utils.send(HttpRequest.HttpMethod.GET, Urls.Subject_XiangQing+id+".json",new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> s) {
 //                Log.d("Tag",s.result);

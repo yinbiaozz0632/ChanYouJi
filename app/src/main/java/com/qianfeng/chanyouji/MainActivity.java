@@ -1,5 +1,6 @@
 package com.qianfeng.chanyouji;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -29,6 +32,9 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
     private ViewPager viewPager;
     private RadioGroup rg;
     private MainViewPagerAdapter adapter;
+    private ImageView search;
+
+
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -66,6 +72,17 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
         viewPager.setOnPageChangeListener(this);
 
         rg.setOnCheckedChangeListener(this);//radioButton的点击监听
+
+        search= ((ImageView) findViewById(R.id.ivSearch));
+        //点击搜索按钮
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
