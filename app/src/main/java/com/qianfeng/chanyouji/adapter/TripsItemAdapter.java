@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class TripsItemAdapter extends BaseAdapter {
     private Context context;
-    private List<TripsData> list;
+    private  List<TripsData> list;
 
     public TripsItemAdapter(Context context, List<TripsData> list) {
         this.context = context;
@@ -70,6 +70,11 @@ public class TripsItemAdapter extends BaseAdapter {
             details= (TextView) v.findViewById(R.id.tv2_item);
             icon_iv= (ImageView) v.findViewById(R.id.smalliv_item);
         }
+    }
+
+    public  void addList(List<TripsData> list1){
+        list.addAll(list.size()-1,list1);
+        notifyDataSetChanged();
     }
 
 }

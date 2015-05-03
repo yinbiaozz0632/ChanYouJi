@@ -42,7 +42,7 @@ public class DestinationFragment extends Fragment implements PullToRefreshBase.O
                 destinationsDatases = PaseJson.jsonToList(s);
                 adapter = new DestinationsAdapter(getActivity(),destinationsDatases);
                 pullToRefalsh.setAdapter(adapter);
-            }else if (msg.what==2){
+            }else if (msg.what==0){
                 pro_bar.setVisibility(View.GONE);
             }
 
@@ -66,7 +66,6 @@ public class DestinationFragment extends Fragment implements PullToRefreshBase.O
 
     @Override
     public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-        adapter.clear();
         DownLoadData.downData(getActivity(), FinalUrl.DESTINATION,handler,1);
 
 

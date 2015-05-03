@@ -73,10 +73,6 @@ public class DestinationsAdapter extends BaseAdapter  {
 
         return convertView;
     }
-    public  void clear(){
-        list.clear();
-        notifyDataSetChanged();
-    }
 
 
 }
