@@ -72,6 +72,13 @@ public class TripsItemAdapter extends BaseAdapter {
         }
     }
 
+<<<<<<< HEAD
 
+=======
+    public  void addList(List<TripsData> list1){
+        list.addAll(list.size()-1,list1);
+        notifyDataSetChanged();
+    }
+>>>>>>> origin/master
 
 }

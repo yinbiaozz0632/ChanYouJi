@@ -2,25 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="5dp"
-    android:paddingLeft="5dp"
     android:paddingBottom="5dp">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:src="@drawable/ic_launcher"
         android:scaleType="fitXY"
         android:id="@+id/cantr_image" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cantr_name"
-        android:text="djfdkjjf"
-        android:textColor="#ffffff"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:textSize="18dp"/>
 
     <RadioGroup
         android:layout_width="match_parent"
