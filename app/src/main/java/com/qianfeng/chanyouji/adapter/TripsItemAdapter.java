@@ -72,9 +72,6 @@ public class TripsItemAdapter extends BaseAdapter {
         }
     }
 
-    public  void addList(List<TripsData> list1){
-        list.addAll(list.size()-1,list1);
-        notifyDataSetChanged();
-    }
+
 
 }

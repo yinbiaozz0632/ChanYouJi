@@ -56,7 +56,7 @@ public class CanTrayPackageBookActivity extends ActionBarActivity implements Vie
     }
 
     private void init() {
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         listView = (PullToRefreshListView) findViewById(R.id.pulltolistview);
         listView.setOnRefreshListener(this);
         Intent intent = getIntent();
