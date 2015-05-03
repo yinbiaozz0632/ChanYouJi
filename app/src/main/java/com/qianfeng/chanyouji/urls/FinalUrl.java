@@ -13,6 +13,7 @@ public class FinalUrl {
 
     public static final String ATTRACTIONS="https://chanyouji.com/api/destinations/attractions/45.json?page=1";
     public static final String TRIPS="https://chanyouji.com/api/destinations/trips/";
+    public static final String SEASONS="https://chanyouji.com/api/destinations/trips/";
 
 
 
