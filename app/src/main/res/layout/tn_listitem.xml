@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="7dp">
 
     <ImageView
         android:id="@+id/iv_item"
@@ -9,7 +10,7 @@
         android:layout_height="220dp"
         android:layout_margin="3dp"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_launcher"
+        android:background="@drawable/bg_hazy_layer"
         />
     <TextView
         android:id="@+id/tv1_item"
@@ -46,4 +47,15 @@
         android:background="@drawable/tn_icon"
 
         />
+
+    <ProgressBar
+        android:id="@+id/n_pb"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_centerVertical="true"
+        />
+
+
+
 </RelativeLayout>

@@ -1,13 +1,20 @@
 package com.qianfeng.chanyouji.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import com.qianfeng.chanyouji.R;
 import com.qianfeng.chanyouji.beans.Subject_ShouYeData;
 import com.qianfeng.chanyouji.netutils.BitmapHelper;
@@ -49,14 +56,42 @@ public class SubjectShouYeAdapter extends BaseAdapter {
             view.setTag(new ViewHolder(view));
         }
 
-        ViewHolder holder = (ViewHolder) view.getTag();
+        final ViewHolder holder = (ViewHolder) view.getTag();
 
         Subject_ShouYeData data = datas.get(position);
 
         holder.sub_name.setText(data.getName());
         holder.sub_title.setText(data.getTitle());
 
-        BitmapHelper.getBitmapUtils().display(holder.sub_image,data.getImage_url());
+//        if(holder.sub_image==null) {
+//
+//        }
+        BitmapHelper.getBitmapUtils().display(holder.sub_image,data.getImage_url(),new BitmapLoadCallBack<ImageView>() {
+            @Override
+            public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
+                holder.sub_image.setImageBitmap(bitmap);
+            }
+
+
+            @Override
+            public void onLoading(ImageView container, String uri, BitmapDisplayConfig config, long total, long current) {
+//                super.onLoading(container, uri, config, total, current);
+//                Log.d("Tag",total+"");
+                holder.sub_pb.setVisibility(View.VISIBLE);
+                holder.sub_pb.setProgress(0);
+                holder.sub_pb.setMax((int)total);
+                holder.sub_pb.incrementProgressBy((int)current);
+                if(total==current) {
+                    holder.sub_pb.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onLoadFailed(ImageView imageView, String s, Drawable drawable) {
+
+            }
+        });
 
 
 
@@ -67,11 +102,13 @@ public class SubjectShouYeAdapter extends BaseAdapter {
     class ViewHolder{
         private TextView sub_name,sub_title;
         private ImageView sub_image;
+        private ProgressBar sub_pb;
 
         public ViewHolder(View v){
             sub_name= ((TextView) v.findViewById(R.id.sub_name));
             sub_title= ((TextView) v.findViewById(R.id.sub_title));
             sub_image= ((ImageView) v.findViewById(R.id.sub_image));
+            sub_pb = (ProgressBar) v.findViewById(R.id.sub_pb);
         }
     }
 

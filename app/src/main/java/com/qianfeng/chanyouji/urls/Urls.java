@@ -15,4 +15,10 @@ public class Urls {
     //搜索国内国外
     public static String Search_GuoNeiAndWai="http://chanyouji.com/api/destinations/trips/12.json?page=1";
 
+    //搜索的接口
+
+    public static String Search="https://chanyouji.com/api/destinations/list.json";
+
+
+
 }

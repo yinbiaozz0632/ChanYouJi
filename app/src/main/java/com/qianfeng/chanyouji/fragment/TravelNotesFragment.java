@@ -1,6 +1,8 @@
 package com.qianfeng.chanyouji.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
@@ -35,6 +37,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by admin on 2015/4/30.
@@ -52,6 +56,7 @@ public class TravelNotesFragment extends Fragment {
     private List<TravelNotesInfo> tnInfos;
     private PullToRefreshListView PTRlistView;
     private int page=1;
+    private int i=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -89,8 +94,33 @@ public class TravelNotesFragment extends Fragment {
         getListViewData();
         adapter=new TravelNotesListAdapter(getActivity(),tnInfos);
         PTRlistView.setAdapter(adapter);
+
+
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                handler.sendEmptyMessage(1);//两秒后发送消息切换vp的图片
+            }
+        },0,2000);
+
+
         return view;
     }
+
+
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.what==1){
+                viewPager.setCurrentItem(i % 6);
+                i++;
+            }
+        }
+    };
+
+
 
     /**ViewPager头部的适配器*/
     class ViewPagerAdapter extends PagerAdapter {

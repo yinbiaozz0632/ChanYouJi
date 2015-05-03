@@ -21,7 +21,8 @@
             android:id="@+id/image_sub_adapter"
             android:layout_width="match_parent"
             android:scaleType="fitXY"
-            android:layout_height="wrap_content"/>
+            android:background="@drawable/bg_hazy_layer"
+            android:layout_height="300dp"/>
 
 
         <TextView
