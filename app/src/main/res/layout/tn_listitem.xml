@@ -52,6 +52,8 @@
         android:id="@+id/n_pb"
         android:layout_width="match_parent"
         android:layout_height="20dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_centerVertical="true"
         />

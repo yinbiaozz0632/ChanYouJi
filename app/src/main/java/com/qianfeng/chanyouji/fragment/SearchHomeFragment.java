@@ -1,14 +1,17 @@
 package com.qianfeng.chanyouji.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.qianfeng.chanyouji.R;
+import com.qianfeng.chanyouji.TripsActivity;
 import com.qianfeng.chanyouji.adapter.SearchAdapter;
 import com.qianfeng.chanyouji.beans.SearchData;
 
@@ -18,7 +21,7 @@ import java.util.List;
 /**
  * Created by admin on 2015/5/2.
  */
-public class SearchHomeFragment extends Fragment {
+public class SearchHomeFragment extends Fragment implements AdapterView.OnItemClickListener {
     private GridView gv;
     private View view;
     private List<SearchData> datas;
@@ -29,6 +32,8 @@ public class SearchHomeFragment extends Fragment {
         init();
         SearchAdapter adapter = new SearchAdapter(datas,getActivity());
         gv.setAdapter(adapter);
+
+        gv.setOnItemClickListener(this);
 
         return view;
     }
@@ -70,7 +75,14 @@ public class SearchHomeFragment extends Fragment {
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(getActivity(), TripsActivity.class);
 
+        intent.putExtra("id",datas.get(i).getId());
+        intent.putExtra("name_Zh_Cn",datas.get(i).getName());
 
+        startActivity(intent);
 
+    }
 }
