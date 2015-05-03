@@ -2,9 +2,12 @@ package com.qianfeng.chanyouji.netutils;
 
 import android.util.Log;
 
+import com.qianfeng.chanyouji.beans.Articles;
 import com.qianfeng.chanyouji.beans.Destination;
 import com.qianfeng.chanyouji.beans.DestinationsDatas;
 import com.qianfeng.chanyouji.beans.Entry_Destination;
+import com.qianfeng.chanyouji.beans.PlansData;
+import com.qianfeng.chanyouji.beans.TripsData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,7 +71,74 @@ public class PaseJson {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return null;
+    }
 
+    //List<Articles> list
+    public static List<Articles> jsonToArticles(String s){
+        try {
+            JSONArray array = new JSONArray(s);
+            ArrayList<Articles> articleses = new ArrayList<>();
+            for (int i = 0; i < array.length(); i++) {
+                Articles articles = new Articles();
+                JSONObject jsonObject = array.getJSONObject(i);
+                articles.setName(jsonObject.getString("name"));
+                articles.setId(jsonObject.getString("id"));
+                articles.setTitle(jsonObject.getString("title"));
+                articles.setImage_url(jsonObject.getString("image_url"));
+                articleses.add(articles);
+            }
+            return articleses;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static List<PlansData> jsonToPlansList(String json){
+        try {
+            JSONArray array = new JSONArray(json);
+            ArrayList<PlansData> plansDatas = new ArrayList<>();
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject jsonObject = array.getJSONObject(i);
+                PlansData plansData = new PlansData();
+                plansData.setImage_url(jsonObject.getString("image_url"));
+                plansData.setDescription(jsonObject.getString("description"));
+                plansData.setId(jsonObject.getString("id"));
+                plansData.setName(jsonObject.getString("name"));
+                plansData.setPlan_days_count(jsonObject.getString("plan_days_count"));
+                plansData.setPlan_nodes_count(jsonObject.getString("plan_nodes_count"));
+
+                plansDatas.add(plansData);
+
+            }
+            return plansDatas;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static List<TripsData> jsonToTripsDataList(String json){
+        try {
+            JSONArray array = new JSONArray(json);
+            ArrayList<TripsData> tripsDatas = new ArrayList<>();
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject jsonObject = array.getJSONObject(i);
+                TripsData tripsData = new TripsData();
+                tripsData.setName(jsonObject.getString("name"));
+                tripsData.setDays(jsonObject.getString("days"));
+                tripsData.setFront_Cover_Photo_Url(jsonObject.getString("front_cover_photo_url"));
+                tripsData.setPhotos_Count(jsonObject.getString("photos_count"));
+                tripsData.setStart_Date(jsonObject.getString("start_date"));
+                JSONObject user = jsonObject.getJSONObject("user");
+                tripsData.setImage(user.getString("image"));
+                tripsDatas.add(tripsData);
+            }
+            return tripsDatas;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

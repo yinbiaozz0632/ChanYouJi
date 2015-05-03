@@ -67,7 +67,9 @@ public class DestinationsAdapter extends BaseAdapter  {
         }else if (position==4){
             text_Contry.setText("国内,大陆");
         }
-        gridView.setAdapter(new DestinationsGridViewAdapter(context,destinations));
+        if (list.size()!=0) {
+            gridView.setAdapter(new DestinationsGridViewAdapter(context,destinations));
+        }
 
         return convertView;
     }

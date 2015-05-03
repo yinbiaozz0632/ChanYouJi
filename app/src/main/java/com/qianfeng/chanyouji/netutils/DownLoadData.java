@@ -27,7 +27,8 @@ public class DownLoadData {
             public void onSuccess(ResponseInfo<String> objectResponseInfo) {
                 Message message = handler.obtainMessage();
                 message.what=what;
-                message.obj=objectResponseInfo.result;
+                String result = objectResponseInfo.result;
+                message.obj= result;
                 handler.sendMessage(message);
             }
 
@@ -38,6 +39,7 @@ public class DownLoadData {
             @Override
             public void onFailure(HttpException e, String s) {
                 Toast.makeText(context,"错误"+s,Toast.LENGTH_SHORT).show();
+                handler.sendEmptyMessage(0);
             }
         });
     }

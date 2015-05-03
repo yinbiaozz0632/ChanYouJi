@@ -37,14 +37,15 @@ public class DestinationFragment extends Fragment implements PullToRefreshBase.O
             if (msg.what==1) {
                 pro_bar.setVisibility(View.GONE);
                 String s = (String) msg.obj;
-
                 //解析数据
                 pullToRefalsh.onRefreshComplete();
                 destinationsDatases = PaseJson.jsonToList(s);
                 adapter = new DestinationsAdapter(getActivity(),destinationsDatases);
                 pullToRefalsh.setAdapter(adapter);
-
+            }else if (msg.what==0){
+                pro_bar.setVisibility(View.GONE);
             }
+
         }
     };
     private ProgressBar pro_bar;

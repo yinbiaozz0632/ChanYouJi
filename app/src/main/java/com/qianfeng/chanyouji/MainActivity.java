@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
         public void handleMessage(Message msg) {
             if (msg.what==1) {
                 isExit=false;
+
             }
         }
     };
@@ -83,7 +84,14 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
             }
         });
 
-
+        ImageView log_image = (ImageView) findViewById(R.id.ivLogin);
+        log_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

@@ -26,4 +26,12 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="plans" parent="layout">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:text">测试</item>
+        <item name="android:paddingLeft">15dp</item>
+
+    </style>
+
 </resources>

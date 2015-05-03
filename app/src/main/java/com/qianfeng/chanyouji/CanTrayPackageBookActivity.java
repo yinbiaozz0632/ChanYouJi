@@ -31,7 +31,10 @@ public class CanTrayPackageBookActivity extends ActionBarActivity implements Vie
     private Button btnBack;
     private PullToRefreshListView listView;
     private String id;
+    private CantrayPackageBookAdapter adapter;
     private Handler handler =new Handler(){
+
+
         @Override
         public void handleMessage(Message msg) {
             listView.onRefreshComplete();
@@ -39,7 +42,8 @@ public class CanTrayPackageBookActivity extends ActionBarActivity implements Vie
             //解析
             List<Entry_Destination> entry_destinations = PaseJson.jsonToList2(s);
             //设置适配器
-            listView.setAdapter(new CantrayPackageBookAdapter(CanTrayPackageBookActivity.this,entry_destinations));
+            adapter = new CantrayPackageBookAdapter(CanTrayPackageBookActivity.this,entry_destinations);
+            listView.setAdapter(adapter);
 
         }
     };
@@ -56,7 +60,7 @@ public class CanTrayPackageBookActivity extends ActionBarActivity implements Vie
     }
 
     private void init() {
-//        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         listView = (PullToRefreshListView) findViewById(R.id.pulltolistview);
         listView.setOnRefreshListener(this);
         Intent intent = getIntent();
@@ -75,6 +79,7 @@ public class CanTrayPackageBookActivity extends ActionBarActivity implements Vie
 
     @Override
     public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+        adapter.clear();
         DownLoadData.downData(this, FinalUrl.ENTER_DESTINATION+id+".json",handler,1);
     }
 }
