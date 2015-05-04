@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout">
+
+        <ImageView
+            android:id="@+id/item_travel_place_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/item_travel_place_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingTop="7dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:alpha="0.6"
+            android:background="#000000"
+            android:text="500"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_travel_place_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/relativeLayout"
+        android:text="泰国大皇宫" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_travel_place_tv2"
+        android:id="@+id/item_travel_place_iv2"/>
+    <TextView
+        android:id="@+id/item_travel_place_tv3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/relativeLayout"
+        android:layout_alignBottom="@+id/relativeLayout"
+        android:text="描述" />
+
+</RelativeLayout>
