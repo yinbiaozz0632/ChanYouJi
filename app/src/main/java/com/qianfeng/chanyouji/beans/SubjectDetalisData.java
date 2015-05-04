@@ -4,6 +4,16 @@ package com.qianfeng.chanyouji.beans;
  * Created by admin on 2015/5/1.
  */
 public class SubjectDetalisData {
+    private int Tag;
+
+    public int getTag() {
+        return Tag;
+    }
+
+    public void setTag(int tag) {
+        Tag = tag;
+    }
+
     private String title,image_url,description,trip_name,user_name,name;
 
     public String getTitle() {

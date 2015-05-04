@@ -2,6 +2,7 @@ package com.qianfeng.chanyouji.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.v4.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.hb.views.PinnedSectionListView;
 import com.qianfeng.chanyouji.R;
 import com.qianfeng.chanyouji.beans.SubjectDetalisData;
 import com.qianfeng.chanyouji.netutils.BitmapHelper;
@@ -22,7 +24,7 @@ import java.util.List;
 /**
  * Created by admin on 2015/5/1.
  */
-public class SubjectdetalilsAdapter extends BaseAdapter implements ImageLoader.ImageCache{
+public class SubjectdetalilsAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter,ImageLoader.ImageCache{
 
     private List<SubjectDetalisData> datas;
     private Context context;
@@ -62,26 +64,38 @@ public class SubjectdetalilsAdapter extends BaseAdapter implements ImageLoader.I
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view == null) {
-            view= LayoutInflater.from(context).inflate(R.layout.subjectdeatils_items,null);
-            view.setTag(new ViewHolder(view));
-        }
-
-        ViewHolder holder= ((ViewHolder) view.getTag());
 
         SubjectDetalisData data = datas.get(i);
 
+        if (data.getTag() == 0) {
 
-        holder.title.setText(data.getTitle());
+            if (view == null) {
+                view = LayoutInflater.from(context).inflate(R.layout.subjectdeatils_items, null);
+                view.setTag(new ViewHolder(view));
+            }
+
+            ViewHolder holder = ((ViewHolder) view.getTag());
 
 
-        holder.description.setText(data.getDescription());
-        holder.sub_name.setText(data.getName());
-        holder.user_name.setText(data.getUser_name());
-        holder.trip_name.setText(data.getTrip_name());
+//        holder.title.setText(data.getTitle());
 
-        holder.image_sub_adapter.setImageUrl(data.getImage_url(),loder);
 
+            holder.description.setText(data.getDescription());
+            holder.sub_name.setText(data.getName());
+            holder.user_name.setText(data.getUser_name());
+            holder.trip_name.setText(data.getTrip_name());
+
+            holder.image_sub_adapter.setImageUrl(data.getImage_url(), loder);
+        } else if (data.getTag() == 1) {
+            if(view==null){
+                view = LayoutInflater.from(context).inflate(R.layout.subject_title_items, null);
+                view.setTag(new ViewHolderTitle(view));
+            }
+
+            ViewHolderTitle holderTitle= (ViewHolderTitle) view.getTag();
+            holderTitle.sub_title.setBackgroundColor(Color.WHITE);
+            holderTitle.sub_title.setText(data.getTitle());
+        }
         return view;
     }
 
@@ -95,11 +109,36 @@ public class SubjectdetalilsAdapter extends BaseAdapter implements ImageLoader.I
         cache.put(s, bitmap);//下载后先存到缓存中
     }
 
+    @Override
+    public int getItemViewType(int position) {
+
+        if(datas.get(position).getTag()==1){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public boolean isItemViewTypePinned(int viewType) {
+
+        if(viewType==1){
+            return true;
+        }
+
+        return false;
+    }
+
     class ViewHolder{
-        private TextView title,description,sub_name,trip_name,user_name;
+        private TextView description,sub_name,trip_name,user_name;
         private NetworkImageView image_sub_adapter;
         public ViewHolder(View v){
-            title= ((TextView) v.findViewById(R.id.title));
+//            title= ((TextView) v.findViewById(R.id.title));
             description= ((TextView) v.findViewById(R.id.description));
             sub_name= ((TextView) v.findViewById(R.id.sub_name));
             trip_name= ((TextView) v.findViewById(R.id.trip_name));
@@ -109,6 +148,15 @@ public class SubjectdetalilsAdapter extends BaseAdapter implements ImageLoader.I
 
         }
     }
+
+    class ViewHolderTitle{
+        private TextView sub_title;
+        public ViewHolderTitle(View v){
+            sub_title= (TextView) v.findViewById(R.id.sub_title);
+        }
+    }
+
+
 
 
 }

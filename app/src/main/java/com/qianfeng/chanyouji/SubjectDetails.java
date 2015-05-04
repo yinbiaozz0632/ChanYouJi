@@ -117,6 +117,13 @@ public class SubjectDetails extends ActionBarActivity {
                         JSONObject obj = article_sections.getJSONObject(i);
                         data=new SubjectDetalisData();
 
+                        if(!obj.getString("title").equals("")){
+//                            data.setTitle(obj.getString("title"));
+                            data.setTag(1);
+                        }else{
+                            data.setTag(0);
+                        }
+
                         data.setTitle(obj.getString("title"));
                         data.setImage_url(obj.getString("image_url"));
                         data.setDescription(obj.getString("description"));

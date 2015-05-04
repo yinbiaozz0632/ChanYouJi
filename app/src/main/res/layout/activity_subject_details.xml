@@ -8,8 +8,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#000000"
-        android:alpha="0.3">
+        android:background="#ff3350dd">
 
         <TextView
             android:id="@+id/back"
@@ -52,13 +51,13 @@
 
 
 
-        <ListView
+        <com.hb.views.PinnedSectionListView
             android:id="@+id/sub_listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/title">
 
-            </ListView>
+            </com.hb.views.PinnedSectionListView>
 
 
 

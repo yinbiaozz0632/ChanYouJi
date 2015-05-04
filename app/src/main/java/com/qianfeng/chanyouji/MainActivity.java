@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
     private ViewPager viewPager;
     private RadioGroup rg;
     private MainViewPagerAdapter adapter;
-    private ImageView search;
+    private ImageView search,ivMore;
 
 
     private Handler handler = new Handler(){
@@ -83,6 +83,14 @@ public class MainActivity extends ActionBarActivity implements ViewPager.OnPageC
                 startActivity(intent);
             }
         });
+        ivMore= ((ImageView) findViewById(R.id.ivMore));
+        ivMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                onOptionsItemSelected();
+            }
+        });
+
 
         ImageView log_image = (ImageView) findViewById(R.id.ivLogin);
         log_image.setOnClickListener(new View.OnClickListener() {
