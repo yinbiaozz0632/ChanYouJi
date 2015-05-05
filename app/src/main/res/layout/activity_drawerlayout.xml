@@ -7,19 +7,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.5"
-        android:gravity="center_vertical">
+        android:alpha="0.5">
 
         <ImageView
             android:id="@+id/drawer_layout_back_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:paddingLeft="9dp"
             android:src="@drawable/arrow_right_normal" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/drawer_layout_back_iv"
             android:paddingLeft="5dp"
             android:src="@drawable/logo_b" />
@@ -28,6 +29,7 @@
             android:id="@+id/drawer_layout_down_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/drawer_layout_shoucang_iv"
             android:paddingRight="30dp"
             android:src="@drawable/offline_b" />
@@ -36,19 +38,23 @@
             android:id="@+id/drawer_layout_shoucang_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/drawer_layout_share_iv"
             android:paddingRight="30dp"
             android:src="@drawable/collection_b" />
 
         <ImageView
+
             android:id="@+id/drawer_layout_share_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/drawer_layout_login_iv"
             android:paddingRight="30dp"
             android:src="@drawable/icon_header_share" />
 
         <ImageView
+            android:layout_centerVertical="true"
             android:id="@+id/drawer_layout_login_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
